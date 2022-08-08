@@ -51,6 +51,7 @@ Plugin 'vim-syntastic/syntastic'
 Plugin 'jnurmine/Zenburn'
 "Plugin 'altercation/vim-colors-solarized'
 
+" Install Colorscheme like VS Code's Dark Theme
 Plugin 'tomasiser/vim-code-dark'
 
 " Powerline addon for status bar and keeping track of things like virtualenv, git branch, files edited, etc.
@@ -180,7 +181,6 @@ set history=100
 " Background style
 "set background=dark
 
-
 " Set colorscheme
 "colorscheme slate
 
@@ -200,7 +200,6 @@ set wildmode=list:longest
 let g:rainbow_active = 1
 
 " NERD COMMENTER --------------------------------------------------------------------------
-
 " Create default mappings
 let g:NERDCreateDefaultMappings = 1
 
@@ -229,11 +228,10 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Shortcut to make comment
-map <C-X> :call nerdcommenter#Comment("n", "Toggle")<CR>
+map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " Set keybind for NerdTree Toggle
 nmap <F6> :NERDTreeToggle<CR>
-
 
 " VIM YOUCOMPLETE ME (YCM) config --------------------------------------------------------
 let g:ycm_autoclose_preview_window_after_completion=1
@@ -242,7 +240,6 @@ map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Make code prettier
 let python_highlight_all=1
 syntax on
-
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
 function! s:nerdtreeBookmarks()
