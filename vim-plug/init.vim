@@ -38,7 +38,7 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Plugin for Python auto indentation
-Plug 'vim-scripts/indentpython.vim'
+"Plug 'vim-scripts/indentpython.vim'
 
 " Install Colorscheme like VS Code's Dark Theme
 Plug 'tomasiser/vim-code-dark'
@@ -85,7 +85,7 @@ set number
 set cursorline
 
 " Python PEP 8 Indentation
-au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
+"au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
 
 " For full stack development you can use another au command for each filetype
 " au BufNewFile, BufRead *.js, *.html, *.css
