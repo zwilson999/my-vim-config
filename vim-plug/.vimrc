@@ -47,7 +47,6 @@ Plug 'rust-lang/rust.vim'
 "Required
 call plug#end()
 
-
 "required
 filetype plugin indent on
  
@@ -63,18 +62,16 @@ set backspace=indent,eol,start
 " Enable type file detection, Vim will be able to try to detect the type of file in use.
 "filetype on
 
-
 " set splits for :sp <filename> (vertical split (oppening new file below current file)
 set splitbelow
+
 " set splits for :vs <filename> (horizontal split (opening new file to the right of your current file))
 set splitright
-
 
 " Keybinds
 nnoremap ; :
 
 "split navigations
-
 " Move to the split below
 nnoremap <C-J> <C-W><C-J>
 
@@ -166,8 +163,6 @@ set history=100
 "set background=dark
 
 " Set colorscheme
-set t_Co=256
-set t_ut=
 colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -179,6 +174,9 @@ set wildmode=list:longest
 " Therea re certain files that we would never want to edit with Vim
 " Wildmenu will ignore files with these extensions.
 "set wildignore=*.docx, *.jpg, *.png, *.gif, *.pdf, *.pyc, *.exe, *.flv, *.img, *.xlsx
+
+" coc.nvim config
+let g:coc_disable_startup_warning = 1
 
 " VIM RAINBOW -----------------------------------------------------------------------------
 let g:rainbow_active = 1
@@ -217,13 +215,13 @@ map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
 " Set keybind for NerdTree Toggle
 nmap <F6> :NERDTreeToggle<CR>
 
-" VIM YOUCOMPLETE ME (YCM) config --------------------------------------------------------
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
 " Make code prettier
 let python_highlight_all=1
 syntax on
+
+" Fixedsys-like font
+"set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ Bold\ 13
+set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
 function! s:nerdtreeBookmarks()
@@ -237,9 +235,3 @@ let g:startify_lists = [
 	\ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
 	\]
 
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-
-" Enable folding with spacebar
-nnoremap <space> za
