@@ -44,6 +44,9 @@ Plug 'tomasiser/vim-code-dark'
 " For Rust
 Plug 'rust-lang/rust.vim'
 
+" For Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
 "Required
 call plug#end()
 
