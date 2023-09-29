@@ -35,9 +35,6 @@ Plug 'mhinz/vim-startify'
 " Autocomplete/linter and more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Plugin for Python auto indentation
-"Plug 'vim-scripts/indentpython.vim'
-
 " Install Colorscheme like VS Code's Dark Theme
 Plug 'tomasiser/vim-code-dark'
 
@@ -46,6 +43,24 @@ Plug 'rust-lang/rust.vim'
 
 " For Golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" For Zig
+Plug 'ziglang/zig.vim'
+
+" For C#
+" Plug 'OmniSharp/omnisharp-vim'
+
+" For C
+Plug 'vim-scripts/c.vim'
+
+" For Perl
+" Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
+
+" For SBCL (Steel Bank Common Lisp)
+" Plug 'kovisoft/slimv'
+
+" Auto-completer
+Plug 'Valloric/YouCompleteMe'
 
 "Required
 call plug#end()
@@ -75,6 +90,7 @@ set splitright
 nnoremap ; :
 
 "split navigations
+
 " Move to the split below
 nnoremap <C-J> <C-W><C-J>
 
@@ -88,13 +104,10 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Use clipboard for copy/paste
-set clipboard=unnamedplus
+set clipboard=unnamed
 
 " Turn syntax highlighting on
 syntax on
-
-" Remove menu bar
-set guioptions -=T
 
 " Add numbers to left hand side
 set number
@@ -103,10 +116,10 @@ set number
 set cursorline
 
 " Set shift width to 3 spaces.
-"set shiftwidth=3
+"set shiftwidth=4
 
-" Set tab width to 3 columns.
-"set tabstop=3
+" Set tab width to 4 columns.
+set tabstop=4
 
 " Python PEP 8 Indentation
 "au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
@@ -120,6 +133,9 @@ set cursorline
 " Flag unnecessary whitespace
 " This will mark extra whitespace bad and probably color it red
 au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
+
+" Show gvim icon
+set guioptions+=i
 
 " UTF-8 Support
 set encoding=utf-8
@@ -166,6 +182,8 @@ set history=100
 "set background=dark
 
 " Set colorscheme
+set t_Co=256
+set t_ut=
 colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -177,9 +195,6 @@ set wildmode=list:longest
 " Therea re certain files that we would never want to edit with Vim
 " Wildmenu will ignore files with these extensions.
 "set wildignore=*.docx, *.jpg, *.png, *.gif, *.pdf, *.pyc, *.exe, *.flv, *.img, *.xlsx
-
-" coc.nvim config
-let g:coc_disable_startup_warning = 1
 
 " VIM RAINBOW -----------------------------------------------------------------------------
 let g:rainbow_active = 1
@@ -197,12 +212,6 @@ let g:NERDCompactSexyComs = 1
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
 
-" Set a language to use its alternate delimiters by default
-"let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override defaults
-"let g:NERDCustomDelimiters = { 'c': { 'left': '/**', 'right': '*.' } }
-
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
 
@@ -218,31 +227,21 @@ map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
 " Set keybind for NerdTree Toggle
 nmap <F6> :NERDTreeToggle<CR>
 
-" Make code prettier
-let python_highlight_all=1
-syntax on
-
 " Fixedsys-like font
 " Download here: https://mega.nz/file/V9JTXKZJ#48OPvvFTR-dRI94AecWBoJAGOSGC-31UnIV2TpV45NU
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ Bold\ 13
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ 13
 set guifont=Fixedsys\ Excelsior\ 16
 
-" Read ~/.NERDTreeBooksmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-	let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-	let bookmarks = bookmarks[0:-2] " Slices an empty last line
-	return map(bookmarks, "{'line': v:val, 'path': v:val}" )
-endfunction
+" Make code prettier
+let python_highlight_all=1
+syntax on
 
-"VIM STARTIFY-----------------------------------------------------------------------------
-let g:startify_lists = [
-	\ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-	\]
-
-" Insert closing brace after typing firs
+" Insert closing brace after typing first
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
 inoremap {{     {
 inoremap {}     {}
 
+" Gopls config
+let g:go_gopls_enabled = 0
