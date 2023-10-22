@@ -21,7 +21,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'vim-airline/vim-airline'
 
 " braces vary in color to make visual matches easier
-Plug 'frazrepo/vim-rainbow'
+" Plug 'frazrepo/vim-rainbow'
 
 " Commenter
 Plug 'preservim/nerdcommenter'
@@ -182,9 +182,9 @@ set history=100
 "set background=dark
 
 " Set colorscheme
-"set t_Co=256
-"set t_ut=
-"set background=dark
+set t_Co=256
+set t_ut=
+set background=dark
 colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -193,12 +193,8 @@ set wildmenu
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest
 
-" Therea re certain files that we would never want to edit with Vim
-" Wildmenu will ignore files with these extensions.
-"set wildignore=*.docx, *.jpg, *.png, *.gif, *.pdf, *.pyc, *.exe, *.flv, *.img, *.xlsx
-
 " VIM RAINBOW -----------------------------------------------------------------------------
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " NERD COMMENTER --------------------------------------------------------------------------
 " Create default mappings
@@ -223,7 +219,7 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Shortcut to make comment
-map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
+map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " Set keybind for NerdTree Toggle
 nmap <F6> :NERDTreeToggle<CR>
@@ -233,8 +229,8 @@ nmap <F6> :NERDTreeToggle<CR>
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ Bold\ 13
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ 13
 "set guifont=Fixedsys\ Excelsior\ 16
-set guifont=Source\ Code\ Pro\ 15
-
+"set guifont=Source\ Code\ Pro\ 15
+set guifont=JetBrainsMono\ Nerd\ Font\ Mono\ Regular\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
 function! s:nerdtreeBookmarks()

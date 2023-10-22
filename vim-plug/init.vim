@@ -37,7 +37,8 @@ Plug 'mhinz/vim-startify'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Install Colorscheme like VS Code's Dark Theme
-Plug 'tomasiser/vim-code-dark'
+" Plug 'tomasiser/vim-code-dark'
+Plug 'Mofiqul/vscode.nvim'
 
 " For Rust
 Plug 'rust-lang/rust.vim'
@@ -99,7 +100,7 @@ set cursorline
 
 " Flag unnecessary whitespace
 " This will mark extra whitespace bad and probably color it red
-au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
+" au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
 
 " UTF-8 Support
 set encoding=utf-8
@@ -144,7 +145,7 @@ set history=100
 " Set colorscheme
 set t_Co=256
 set t_ut=
-colorscheme codedark
+" colorscheme codedark
 
 " Enable auto completion menu after pressing tab
 set wildmenu
@@ -157,7 +158,7 @@ set wildmode=list:longest
 "set wildignore=*.docx, *.jpg, *.png, *.gif, *.pdf, *.pyc, *.exe, *.flv, *.img, *.xlsx
 
 " VIM RAINBOW -----------------------------------------------------------------------------
-let g:rainbow_active = 1
+" let g:rainbow_active = 1
 
 " NERD COMMENTER --------------------------------------------------------------------------
 " Create default mappings
@@ -223,3 +224,7 @@ lua require'nvim-tree'.setup {}
 "    \ 'files': 1,
 "    \ 'folder_arrows': 1,
 "    \ }
+
+" Require our lua config file for any lua configs
+lua require('config')
+lua require('vscode').load('dark')
