@@ -60,7 +60,7 @@ Plug 'vim-scripts/c.vim'
 " Plug 'kovisoft/slimv'
 
 " Auto-completer
-Plug 'Valloric/YouCompleteMe'
+"Plug 'Valloric/YouCompleteMe'
 
 "Required
 call plug#end()
@@ -104,7 +104,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Use clipboard for copy/paste
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Turn syntax highlighting on
 syntax on
@@ -182,8 +182,9 @@ set history=100
 "set background=dark
 
 " Set colorscheme
-set t_Co=256
-set t_ut=
+"set t_Co=256
+"set t_ut=
+"set background=dark
 colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -231,12 +232,21 @@ nmap <F6> :NERDTreeToggle<CR>
 " Download here: https://mega.nz/file/V9JTXKZJ#48OPvvFTR-dRI94AecWBoJAGOSGC-31UnIV2TpV45NU
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ Bold\ 13
 "set guifont=Fixedsys\ Excelsior\ 3.01-L2\ Mono\ 13
-set guifont=Fixedsys\ Excelsior\ 16
+"set guifont=Fixedsys\ Excelsior\ 16
+set guifont=Source\ Code\ Pro\ 15
 
-" Make code prettier
-let python_highlight_all=1
-syntax on
 
+" Read ~/.NERDTreeBooksmarks file and takes its second column
+function! s:nerdtreeBookmarks()
+	"let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+	let bookmarks = bookmarks[0:-2] " Slices an empty last line
+	return map(bookmarks, "{'line': v:val, 'path': v:val}" )
+endfunction
+
+"VIM STARTIFY-----------------------------------------------------------------------------
+let g:startify_lists = [
+	\ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+	\]
 " Insert closing brace after typing first
 inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O

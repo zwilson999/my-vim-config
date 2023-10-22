@@ -229,7 +229,7 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Shortcut to make comment
-map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
+map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
 
 " Set keybind for NerdTree Toggle
 nmap <F6> :NERDTreeToggle<CR>

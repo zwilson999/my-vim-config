@@ -4,7 +4,6 @@
 set nocompatible
 filetype off
 
-
 " Start Plugins for vim-plug here
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
@@ -14,10 +13,10 @@ filetype off
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
-call plug#begin()
+call plug#begin('~/.config/nvim/plugged')
 
 " File explorer
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
 
 " Airline
 Plug 'vim-airline/vim-airline'
@@ -37,11 +36,25 @@ Plug 'mhinz/vim-startify'
 " Autocomplete/linter and more
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Plugin for Python auto indentation
-"Plug 'vim-scripts/indentpython.vim'
-
 " Install Colorscheme like VS Code's Dark Theme
 Plug 'tomasiser/vim-code-dark'
+
+" For Rust
+Plug 'rust-lang/rust.vim'
+
+" For Golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+
+" For C
+Plug 'vim-scripts/c.vim'
+
+" Nvim file explorer
+Plug 'nvim-tree/nvim-web-devicons'
+Plug 'nvim-tree/nvim-tree.lua'
+
+" Tabline
+Plug 'lewis6991/gitsigns.nvim'
+Plug 'romgrk/barbar.nvim'
 
 "required
 call plug#end()
@@ -56,7 +69,7 @@ set splitbelow
 " set splits for :vs <filename> (horizontal split (opening new file to the right of your current file))
 set splitright
 
-" Keybinds
+" Keybinds (changes semicolon to colon for writing Vim commands easier)
 nnoremap ; :
 
 "split navigations
@@ -73,7 +86,7 @@ nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
 " Use clipboard for copy/paste
-set clipboard=unnamed
+set clipboard=unnamedplus
 
 " Turn syntax highlighting on
 syntax on
@@ -83,15 +96,6 @@ set number
 
 " Highlight cursor line underneath the cursor horizontally
 set cursorline
-
-" Python PEP 8 Indentation
-"au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
-
-" For full stack development you can use another au command for each filetype
-" au BufNewFile, BufRead *.js, *.html, *.css
-"	\ set tabstop=2
-"	\ set softtabstop=2
-"	\ set shiftwidth=2	
 
 " Flag unnecessary whitespace
 " This will mark extra whitespace bad and probably color it red
@@ -184,18 +188,11 @@ let g:NERDTrimTrailingWhitespace = 1
 let g:NERDTrimTrailingWhitespace = 1
 
 " Shortcut to make comment
-map <C-/> :call nerdcommenter#Comment("n", "Toggle")<CR>
+map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
 
-" Set keybind for NerdTree Toggle
-nmap <F6> :NERDTreeToggle<CR>
-
-" VIM YOUCOMPLETE ME (YCM) config --------------------------------------------------------
-let g:ycm_autoclose_preview_window_after_completion=1
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
-
-" Make code prettier
-let python_highlight_all=1
-syntax on
+" Set font to Source Code Pro
+"set guifont=Source\ Code\ Pro\ 15
+set guifont=JetBrainsMono\ Nerd\ Font\ Mono\ Regular\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
 function! s:nerdtreeBookmarks()
@@ -209,6 +206,20 @@ let g:startify_lists = [
 	\ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
 	\]
 
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
+" Insert closing brace after typing first
+inoremap {      {}<Left>
+inoremap {<CR>  {<CR>}<Esc>O
+inoremap {{     {
+inoremap {}     {}
+
+" Gopls config
+let g:go_gopls_enabled = 0
+
+" Setup Config for nvim tree
+lua require'nvim-tree'.setup {}
+"let g:nvim_tree_show_icons = {
+"    \ 'git': 1,
+"    \ 'folders': 1,
+"    \ 'files': 1,
+"    \ 'folder_arrows': 1,
+"    \ }
