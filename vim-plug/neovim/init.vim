@@ -57,6 +57,9 @@ Plug 'nvim-tree/nvim-tree.lua'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'romgrk/barbar.nvim'
 
+" For better syntax highlighting
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
 "required
 call plug#end()
 filetype plugin indent on
@@ -97,10 +100,6 @@ set number
 
 " Highlight cursor line underneath the cursor horizontally
 set cursorline
-
-" Flag unnecessary whitespace
-" This will mark extra whitespace bad and probably color it red
-" au BufRead, BufNewFile *.py, *.pyw, *.c, *.h match BadWhitespace /\s\+$/
 
 " UTF-8 Support
 set encoding=utf-8
@@ -143,8 +142,8 @@ set hlsearch
 set history=100
 
 " Set colorscheme
-set t_Co=256
 set t_ut=
+set termguicolors
 " colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -152,10 +151,6 @@ set wildmenu
 
 " Make wildmenu behave like similar to Bash completion.
 set wildmode=list:longest
-
-" Therea re certain files that we would never want to edit with Vim
-" Wildmenu will ignore files with these extensions.
-"set wildignore=*.docx, *.jpg, *.png, *.gif, *.pdf, *.pyc, *.exe, *.flv, *.img, *.xlsx
 
 " VIM RAINBOW -----------------------------------------------------------------------------
 " let g:rainbow_active = 1
@@ -172,12 +167,6 @@ let g:NERDCompactSexyComs = 1
 
 " Align line-wise comment delimiters flush left instead of following code indentation
 let g:NERDDefaultAlign = 'left'
-
-" Set a language to use its alternate delimiters by default
-"let g:NERDAltDelims_java = 1
-
-" Add your own custom formats or override defaults
-"let g:NERDCustomDelimiters = { 'c': { 'left': '/**', 'right': '*.' } }
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
 let g:NERDCommentEmptyLines = 1
@@ -216,15 +205,16 @@ inoremap {}     {}
 " Gopls config
 let g:go_gopls_enabled = 0
 
+" Rust config
+let g:rustfmt_autosave = 1
+let g:rustfmt_emit_files = 1
+let g:rustfmt_fail_silently = 0
+
 " Setup Config for nvim tree
 lua require'nvim-tree'.setup {}
-"let g:nvim_tree_show_icons = {
-"    \ 'git': 1,
-"    \ 'folders': 1,
-"    \ 'files': 1,
-"    \ 'folder_arrows': 1,
-"    \ }
 
 " Require our lua config file for any lua configs
 lua require('config')
+
+" For loading VsCode Dark+ Theme
 lua require('vscode').load('dark')
