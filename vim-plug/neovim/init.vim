@@ -15,53 +15,57 @@ filetype off
 
 call plug#begin('~/.config/nvim/plugged')
 
-" File explorer
-"Plug 'scrooloose/nerdtree'
+        " File explorer
+        "Plug 'scrooloose/nerdtree'
 
-" Airline
-Plug 'vim-airline/vim-airline'
+        " Airline
+        Plug 'vim-airline/vim-airline'
 
-" braces vary in color to make visual matches easier
-Plug 'frazrepo/vim-rainbow'
+        " braces vary in color to make visual matches easier
+        " Plug 'frazrepo/vim-rainbow'
 
-" Commenter
-Plug 'preservim/nerdcommenter'
+        " Commenter
+        Plug 'preservim/nerdcommenter'
 
-" Unix shell commands
-Plug 'tpope/vim-eunuch'
+        " Unix shell commands
+        Plug 'tpope/vim-eunuch'
 
-" Start up screen
-Plug 'mhinz/vim-startify'
+        " Start up screen
+        Plug 'mhinz/vim-startify'
 
-" Autocomplete/linter and more
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " Autocomplete/linter and more
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Install Colorscheme like VS Code's Dark Theme
-" Plug 'tomasiser/vim-code-dark'
-Plug 'Mofiqul/vscode.nvim'
+        " Install Colorscheme like VS Code's Dark Theme
+        " Plug 'tomasiser/vim-code-dark'
+        Plug 'Mofiqul/vscode.nvim'
 
-" For Rust
-Plug 'rust-lang/rust.vim'
+        " Gruvbox themes
+        Plug 'morhetz/gruvbox'
+        Plug 'sainnhe/gruvbox-material'
 
-" For Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        " For Rust
+        Plug 'rust-lang/rust.vim'
 
-" For C
-Plug 'vim-scripts/c.vim'
+        " For Golang
+        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" Nvim file explorer
-Plug 'nvim-tree/nvim-web-devicons'
-Plug 'nvim-tree/nvim-tree.lua'
+        " For C
+        Plug 'vim-scripts/c.vim'
 
-" Tabline
-Plug 'lewis6991/gitsigns.nvim'
-Plug 'romgrk/barbar.nvim'
+        " Nvim file explorer
+        Plug 'nvim-tree/nvim-web-devicons'
+        Plug 'nvim-tree/nvim-tree.lua'
 
-" For better syntax highlighting
-Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+        " Tabline
+        Plug 'lewis6991/gitsigns.nvim'
+        Plug 'romgrk/barbar.nvim'
 
-" Nvim's LSP config
-Plug 'neovim/nvim-lspconfig'
+        " For better syntax highlighting
+        Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
+        " Nvim's LSP config
+        Plug 'neovim/nvim-lspconfig'
 
 "required
 call plug#end()
@@ -146,9 +150,11 @@ set hlsearch
 set history=100
 
 " Set colorscheme
-set t_ut=
+" set t_ut=
 set termguicolors
 " colorscheme codedark
+set background=dark
+colorscheme gruvbox-material
 
 " Enable auto completion menu after pressing tab
 set wildmenu
@@ -201,10 +207,15 @@ let g:startify_lists = [
 	\]
 
 " Insert closing brace after typing first
-inoremap {      {}<Left>
+" inoremap {      {}<Left>
 inoremap {<CR>  {<CR>}<Esc>O
-inoremap {{     {
-inoremap {}     {}
+inoremap (<CR>  (<CR>)<Esc>O
+" inoremap {{     {
+" inoremap {}     {}
+" inoremap (      ()<Left>
+" inoremap (<CR>  (<CR>)<Esc>O
+" inoremap ((     (
+" inoremap ()     ()
 
 " Gopls config
 let g:go_gopls_enabled = 1 
@@ -216,6 +227,22 @@ let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
+" barbar allow us to select buffer based on entry
+" Move to previous/next
+nnoremap <silent>    <C-PageUp> <Cmd>BufferPrevious<CR>
+nnoremap <silent>    <C-PageDown> <Cmd>BufferNext<CR>
+
+" Goto specific buffer (ordered left to right in tabline)
+nnoremap <silent>    <A-1> <Cmd>BufferGoto 1<CR>
+nnoremap <silent>    <A-2> <Cmd>BufferGoto 2<CR>
+nnoremap <silent>    <A-3> <Cmd>BufferGoto 3<CR>
+nnoremap <silent>    <A-4> <Cmd>BufferGoto 4<CR>
+nnoremap <silent>    <A-5> <Cmd>BufferGoto 5<CR>
+nnoremap <silent>    <A-6> <Cmd>BufferGoto 6<CR>
+nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
+nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
+nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
+nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
 "---------------------------LUA config------------------------------------"
 
 " Require our lua config file for any lua configs
@@ -225,4 +252,4 @@ lua require('config')
 lua require'nvim-tree'.setup {}
 
 " For loading VsCode Dark+ Theme
-lua require('vscode').load('dark')
+" lua require('vscode').load('dark')
