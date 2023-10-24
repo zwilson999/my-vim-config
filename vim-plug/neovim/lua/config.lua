@@ -43,3 +43,7 @@ require'nvim-treesitter.configs'.setup {
     additional_vim_regex_highlighting = false,
   },
 }
+
+-- gopls config
+local lspconfig = require("lspconfig")
+lspconfig.gopls.setup({})

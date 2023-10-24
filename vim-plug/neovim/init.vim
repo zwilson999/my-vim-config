@@ -60,6 +60,9 @@ Plug 'romgrk/barbar.nvim'
 " For better syntax highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" Nvim's LSP config
+Plug 'neovim/nvim-lspconfig'
+
 "required
 call plug#end()
 filetype plugin indent on
@@ -70,6 +73,7 @@ set backspace=indent,eol,start
 
 " set splits for :sp <filename> (vertical split (oppening new file below current file)
 set splitbelow
+
 " set splits for :vs <filename> (horizontal split (opening new file to the right of your current file))
 set splitright
 
@@ -203,18 +207,22 @@ inoremap {{     {
 inoremap {}     {}
 
 " Gopls config
-let g:go_gopls_enabled = 0
+let g:go_gopls_enabled = 1 
+let g:go_def_mode='gopls'
+let g:go_info_mode='gopls'
 
 " Rust config
 let g:rustfmt_autosave = 1
 let g:rustfmt_emit_files = 1
 let g:rustfmt_fail_silently = 0
 
-" Setup Config for nvim tree
-lua require'nvim-tree'.setup {}
+"---------------------------LUA config------------------------------------"
 
 " Require our lua config file for any lua configs
 lua require('config')
+
+" Setup Config for nvim tree
+lua require'nvim-tree'.setup {}
 
 " For loading VsCode Dark+ Theme
 lua require('vscode').load('dark')
