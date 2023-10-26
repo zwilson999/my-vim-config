@@ -8,21 +8,18 @@ filetype off
 " The default plugin directory will be as follows:
 "   - Vim (Linux/macOS): '~/.vim/plugged'
 "   - Vim (Windows): '~/vimfiles/plugged'
-"   - Neovim (Linux/macOS/Windows): stdpath('data') . '/plugged'
+"   - Neovim (Linux/macOS/Windows): '~/config/nvim/plugged
 " You can specify a custom plugin directory by passing it as the argument
 "   - e.g. `call plug#begin('~/.vim/plugged')`
 "   - Avoid using standard Vim directory names like 'plugin'
 
 call plug#begin('~/.config/nvim/plugged')
 
-        " File explorer
-        "Plug 'scrooloose/nerdtree'
-
         " Airline
         Plug 'vim-airline/vim-airline'
 
         " braces vary in color to make visual matches easier
-        " Plug 'frazrepo/vim-rainbow'
+        Plug 'luochen1990/rainbow'
 
         " Commenter
         Plug 'preservim/nerdcommenter'
@@ -46,6 +43,8 @@ call plug#begin('~/.config/nvim/plugged')
 
         " For Rust
         Plug 'rust-lang/rust.vim'
+        Plug 'simrat39/rust-tools.nvim'
+        Plug 'nvim-lua/plenary.nvim'
 
         " For Golang
         Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -64,13 +63,18 @@ call plug#begin('~/.config/nvim/plugged')
         " For better syntax highlighting
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-        " Nvim's LSP config
+        " Nvim's native LSP config
         Plug 'neovim/nvim-lspconfig'
 
-"required
+        " Context viewer for functions
+        Plug 'nvim-treesitter/nvim-treesitter-context'
+
 call plug#end()
+
+" /************ Plugin Configurations below! ***********/
+
+" turn on file detection
 filetype plugin indent on
-" Put your non-Plugin stuff after this line
 
 " Ensure backspace works as intended
 set backspace=indent,eol,start
@@ -80,9 +84,6 @@ set splitbelow
 
 " set splits for :vs <filename> (horizontal split (opening new file to the right of your current file))
 set splitright
-
-" Keybinds (changes semicolon to colon for writing Vim commands easier)
-nnoremap ; :
 
 "split navigations
 " Move to the split below
@@ -151,8 +152,8 @@ set history=100
 
 " Set colorscheme
 " set t_ut=
-set termguicolors
 " colorscheme codedark
+set termguicolors
 set background=dark
 colorscheme gruvbox-material
 
@@ -243,6 +244,9 @@ nnoremap <silent>    <A-7> <Cmd>BufferGoto 7<CR>
 nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
 nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
 nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
+
+
+nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 "---------------------------LUA config------------------------------------"
 
 " Require our lua config file for any lua configs
