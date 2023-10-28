@@ -16,10 +16,11 @@ filetype off
 call plug#begin('~/.config/nvim/plugged')
 
         " Airline
-        Plug 'vim-airline/vim-airline'
+        " Plug 'vim-airline/vim-airline'
+        Plug 'nvim-lualine/lualine.nvim'
 
         " braces vary in color to make visual matches easier
-        Plug 'luochen1990/rainbow'
+        " Plug 'luochen1990/rainbow'
 
         " Commenter
         Plug 'preservim/nerdcommenter'
@@ -245,8 +246,18 @@ nnoremap <silent>    <A-8> <Cmd>BufferGoto 8<CR>
 nnoremap <silent>    <A-9> <Cmd>BufferGoto 9<CR>
 nnoremap <silent>    <A-0> <Cmd>BufferLast<CR>
 
-
+" Will open a hover window for the function cursor is over, showing
+" documentation for the item
 nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
+" Other optional lsp config shortcuts
+" nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
+" nnoremap <silent> <c-]> <cmd>lua vim.lsp.buf.definition()<CR>
+" nnoremap <silent> gD    <cmd>lua vim.lsp.buf.implementation()<CR>
+" nnoremap <silent> <c-h> <cmd>lua vim.lsp.buf.signature_help()<CR>
+" nnoremap <silent> 1gD   <cmd>lua vim.lsp.buf.type_definition()<CR>
+" nnoremap <silent> gr    <cmd>lua vim.lsp.buf.references()<CR>
+" nnoremap <silent> g0    <cmd>lua vim.lsp.buf.document_symbol()<CR>
+" nnoremap <silent> gW    <cmd>lua vim.lsp.buf.workspace_symbol()<CR>
 "---------------------------LUA config------------------------------------"
 
 " Require our lua config file for any lua configs
