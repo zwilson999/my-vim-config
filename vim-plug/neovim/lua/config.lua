@@ -33,14 +33,24 @@
 -- require('vscode').load()
 
 -- nvim-tree turn on diagnostics
-require'nvim-tree'.setup {
+require ('nvim-tree').setup({
   diagnostics = {
     enable = true,
-  }
-}
+    icons = {
+      hint = "",
+      info = "",
+      warning = "",
+      error = "",
+    },
+    show_on_dirs = true,
+  },
+  view = {
+    signcolumn = 'yes',
+  },
+})
 
 -- nvim-treesitter configurations
-require'nvim-treesitter.configs'.setup {
+require('nvim-treesitter.configs').setup({
   highlight = {
     enable = true,
     -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
@@ -49,10 +59,10 @@ require'nvim-treesitter.configs'.setup {
     -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
-}
+})
 
 -- for viewing function context
-require'treesitter-context'.setup{
+require('treesitter-context').setup({
   enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
   max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
   min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
@@ -65,11 +75,24 @@ require'treesitter-context'.setup{
   separator = nil,
   zindex = 20, -- The Z-index of the context window
   on_attach = nil, -- (fun(buf: integer): boolean) return false to disable attaching
-}
+})
 
 -- gopls config
 local lspconfig = require("lspconfig")
-lspconfig.gopls.setup({})
+lspconfig.gopls.setup{
+        cmd={'gopls'},
+               settings = {
+                   gopls = {
+                      analyses = {
+                               unusedparams = true,
+                               shadow = true,
+                      },
+                      staticcheck = true,
+                      gofumpt = true,
+                   },
+               },
+}
+        
 
 -- rust-tools config
 local rt = require("rust-tools")
@@ -304,3 +327,6 @@ require('lualine').setup {
   inactive_winbar = {},
   extensions = {}
 }
+
+-- for pyright config
+require'lspconfig'.pyright.setup{}

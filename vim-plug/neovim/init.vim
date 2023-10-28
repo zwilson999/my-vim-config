@@ -2,7 +2,7 @@
 " required
 " Disable compatibility with vi which can cause unexpected problems.
 set nocompatible
-filetype off
+" filetype off
 
 " Start Plugins for vim-plug here
 " The default plugin directory will be as follows:
@@ -32,7 +32,7 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'mhinz/vim-startify'
 
         " Autocomplete/linter and more
-        Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
         " Install Colorscheme like VS Code's Dark Theme
         " Plug 'tomasiser/vim-code-dark'
@@ -197,16 +197,16 @@ map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
 set guifont=JetBrainsMono\ Nerd\ Font\ Mono\ Regular\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
-function! s:nerdtreeBookmarks()
-	let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-	let bookmarks = bookmarks[0:-2] " Slices an empty last line
-	return map(bookmarks, "{'line': v:val, 'path': v:val}" )
-endfunction
+" function! s:nerdtreeBookmarks()
+"         let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+"         let bookmarks = bookmarks[0:-2] " Slices an empty last line
+"         return map(bookmarks, "{'line': v:val, 'path': v:val}" )
+" endfunction
 
 "VIM STARTIFY-----------------------------------------------------------------------------
-let g:startify_lists = [
-	\ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-	\]
+" let g:startify_lists = [
+"         \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+"         \]
 
 " Insert closing brace after typing first
 " inoremap {      {}<Left>
@@ -262,9 +262,6 @@ nnoremap <silent> K     <cmd>lua vim.lsp.buf.hover()<CR>
 
 " Require our lua config file for any lua configs
 lua require('config')
-
-" Setup Config for nvim tree
-lua require'nvim-tree'.setup {}
 
 " For loading VsCode Dark+ Theme
 " lua require('vscode').load('dark')
