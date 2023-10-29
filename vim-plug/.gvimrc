@@ -14,53 +14,41 @@ filetype off
 
 call plug#begin()
 
-" File explorer
-Plug 'scrooloose/nerdtree'
+        " File explorer
+        Plug 'scrooloose/nerdtree'
 
-" Airline
-Plug 'vim-airline/vim-airline'
+        " Airline
+        Plug 'vim-airline/vim-airline'
 
-" braces vary in color to make visual matches easier
-" Plug 'frazrepo/vim-rainbow'
+        " Commenter
+        Plug 'preservim/nerdcommenter'
 
-" Commenter
-Plug 'preservim/nerdcommenter'
+        " Unix shell commands
+        Plug 'tpope/vim-eunuch'
 
-" Unix shell commands
-Plug 'tpope/vim-eunuch'
+        " Start up screen
+        Plug 'mhinz/vim-startify'
 
-" Start up screen
-Plug 'mhinz/vim-startify'
+        " Autocomplete/linter and more
+        Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
-" Autocomplete/linter and more
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+        " Install Colorscheme like VS Code's Dark Theme
+        Plug 'tomasiser/vim-code-dark'
 
-" Install Colorscheme like VS Code's Dark Theme
-Plug 'tomasiser/vim-code-dark'
+        " For Rust
+        Plug 'rust-lang/rust.vim'
 
-" For Rust
-Plug 'rust-lang/rust.vim'
+        " For Golang
+        Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
-" For Golang
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+        " For Zig
+        Plug 'ziglang/zig.vim'
 
-" For Zig
-Plug 'ziglang/zig.vim'
+        " For C#
+        " Plug 'OmniSharp/omnisharp-vim'
 
-" For C#
-" Plug 'OmniSharp/omnisharp-vim'
-
-" For C
-Plug 'vim-scripts/c.vim'
-
-" For Perl
-" Plug 'vim-perl/vim-perl', { 'for': 'perl', 'do': 'make clean carp dancer highlight-all-pragmas moose test-more try-tiny' }
-
-" For SBCL (Steel Bank Common Lisp)
-" Plug 'kovisoft/slimv'
-
-" Auto-completer
-" Plug 'Valloric/YouCompleteMe'
+        " For C
+        Plug 'vim-scripts/c.vim'
 
 "Required
 call plug#end()
@@ -68,12 +56,6 @@ call plug#end()
 "required
 filetype plugin indent on
  
-" Enabled plugins and load plugin for the detected file typ
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
-
-" Put your non-Plugin stuff after this line
-
 " Ensure backspace works as intended
 set backspace=indent,eol,start
 
@@ -86,11 +68,7 @@ set splitbelow
 " set splits for :vs <filename> (horizontal split (opening new file to the right of your current file))
 set splitright
 
-" Keybinds
-nnoremap ; :
-
 "split navigations
-
 " Move to the split below
 nnoremap <C-J> <C-W><C-J>
 
@@ -123,15 +101,6 @@ set cursorline
 
 " Set tab width to 4 columns.
 set tabstop=4
-
-" Python PEP 8 Indentation
-"au BufNewFile,BufRead *.py set tabstop=4 softtabstop=4 shiftwidth=4 textwidth=79 expandtab autoindent fileformat=unix
-
-" For full stack development you can use another au command for each filetype
-" au BufNewFile, BufRead *.js, *.html, *.css
-"	\ set tabstop=2
-"	\ set softtabstop=2
-"	\ set shiftwidth=2	
 
 " Flag unnecessary whitespace
 " This will mark extra whitespace bad and probably color it red
@@ -180,13 +149,10 @@ set hlsearch
 " Set the commands to save in history default number is 20.
 set history=100
 
-" Appearance mods
-" Background style
-"set background=dark
-
 " Set colorscheme
-set t_Co=256
-set t_ut=
+" set t_Co=256
+" set t_ut=
+set background=dark
 colorscheme codedark
 
 " Enable auto completion menu after pressing tab
@@ -233,7 +199,7 @@ set guifont=JetBrainsMono\ Nerd\ Font\ Mono\ Regular\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
 function! s:nerdtreeBookmarks()
-	"let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+	let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
 	let bookmarks = bookmarks[0:-2] " Slices an empty last line
 	return map(bookmarks, "{'line': v:val, 'path': v:val}" )
 endfunction
