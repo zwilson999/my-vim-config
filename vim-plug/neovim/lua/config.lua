@@ -32,7 +32,8 @@
 -- })
 -- require('vscode').load()
 
--- nvim-tree turn on diagnostics
+-- nvim-tree turn on diagnostics so that we receive helpful
+-- symbols in the tree for a directory
 require ('nvim-tree').setup({
   diagnostics = {
     enable = true,
@@ -80,20 +81,19 @@ require('treesitter-context').setup({
 -- gopls config
 local lspconfig = require("lspconfig")
 lspconfig.gopls.setup{
-        cmd={'gopls'},
-               settings = {
-                   gopls = {
-                      analyses = {
-                               unusedparams = true,
-                               shadow = true,
-                      },
-                      staticcheck = true,
-                      gofumpt = true,
-                   },
-               },
+  cmd={'gopls'},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+        shadow = false,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    },
+  },
 }
         
-
 -- rust-tools config
 local rt = require("rust-tools")
 rt.setup({
@@ -328,5 +328,12 @@ require('lualine').setup {
   extensions = {}
 }
 
--- for pyright config
-require'lspconfig'.pyright.setup{}
+-- setup default pyright config
+require ('lspconfig').pyright.setup({})
+
+-- setup default clangd config
+require ('lspconfig').clangd.setup({})
+
+-- setup mason
+require("mason").setup()
+require("mason-lspconfig").setup()

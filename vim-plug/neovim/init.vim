@@ -15,17 +15,16 @@ set nocompatible
 
 call plug#begin('~/.config/nvim/plugged')
 
-        " Airline
-        " Plug 'vim-airline/vim-airline'
+        " creates bar at bottom of editor that shows useful information
         Plug 'nvim-lualine/lualine.nvim'
 
         " braces vary in color to make visual matches easier
-        " Plug 'luochen1990/rainbow'
+        Plug 'luochen1990/rainbow'
 
         " Commenter
         Plug 'preservim/nerdcommenter'
 
-        " Unix shell commands
+        " Unix shell commands can be ran within the vim editor
         Plug 'tpope/vim-eunuch'
 
         " Start up screen
@@ -42,6 +41,9 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'morhetz/gruvbox'
         Plug 'sainnhe/gruvbox-material'
 
+        " Shades of purple themes
+        Plug 'Rigellute/shades-of-purple.vim'
+
         " For Rust
         Plug 'rust-lang/rust.vim'
         Plug 'simrat39/rust-tools.nvim'
@@ -57,6 +59,13 @@ call plug#begin('~/.config/nvim/plugged')
         Plug 'nvim-tree/nvim-web-devicons'
         Plug 'nvim-tree/nvim-tree.lua'
 
+        " For Java
+        Plug 'mfussenegger/nvim-jdtls'
+
+        " Package manager plugin for LSPs
+        Plug 'williamboman/mason.nvim'
+        Plug 'williamboman/mason-lspconfig.nvim'
+
         " Tabline
         Plug 'lewis6991/gitsigns.nvim'
         Plug 'romgrk/barbar.nvim'
@@ -64,7 +73,8 @@ call plug#begin('~/.config/nvim/plugged')
         " For better syntax highlighting
         Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
-        " Nvim's native LSP config
+        " Nvim's native LSP config system
+        Plug 'williamboman/nvim-lsp-installer'
         Plug 'neovim/nvim-lspconfig'
 
         " Context viewer for functions
@@ -157,6 +167,7 @@ set history=100
 set termguicolors
 set background=dark
 colorscheme gruvbox-material
+" colorscheme shades_of_purple
 
 " Enable auto completion menu after pressing tab
 set wildmenu
@@ -197,16 +208,16 @@ map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
 set guifont=JetBrainsMono\ Nerd\ Font\ Mono\ Regular\ 13
 
 " Read ~/.NERDTreeBooksmarks file and takes its second column
-" function! s:nerdtreeBookmarks()
-"         let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
-"         let bookmarks = bookmarks[0:-2] " Slices an empty last line
-"         return map(bookmarks, "{'line': v:val, 'path': v:val}" )
-" endfunction
+function! s:nerdtreeBookmarks()
+        let bookmarks = systemlist("cut -d' ' -f 2- ~/.NERDTreeBookmarks")
+        let bookmarks = bookmarks[0:-2] " Slices an empty last line
+        return map(bookmarks, "{'line': v:val, 'path': v:val}" )
+endfunction
 
 "VIM STARTIFY-----------------------------------------------------------------------------
-" let g:startify_lists = [
-"         \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
-"         \]
+let g:startify_lists = [
+        \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
+        \]
 
 " Insert closing brace after typing first
 " inoremap {      {}<Left>
