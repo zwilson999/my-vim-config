@@ -192,7 +192,7 @@ let g:NERDCompactSexyComs = 1
 let g:NERDDefaultAlign = 'left'
 
 " Allow commenting and inverting empty lines (useful when commenting a region)
-let g:NERDCommentEmptyLines = 1
+" let g:NERDCommentEmptyLines = 1
 
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
@@ -202,6 +202,9 @@ let g:NERDTrimTrailingWhitespace = 1
 
 " Shortcut to make comment
 map <C-c> :call nerdcommenter#Comment("n", "Toggle")<CR>
+
+" Turn off auto-commenting when pressing enter to next line
+autocmd FileType * set formatoptions-=cro
 
 " Set font to Source Code Pro
 "set guifont=Source\ Code\ Pro\ 15
@@ -218,6 +221,7 @@ endfunction
 let g:startify_lists = [
         \ { 'type': function('s:nerdtreeBookmarks'), 'header': ['   NERDTree Bookmarks']}
         \]
+
 
 " Insert closing brace after typing first
 " inoremap {      {}<Left>
