@@ -1,6 +1,15 @@
-# My Personal VIM Config
-# My Neovim Config
+# My Neovim (On Linux) Config
 
+## Config for Neovim has moved to being managed by lazy.nvim
+To view lazy.nvim specifics: https://github.com/folke/lazy.nvim
+
+## Step 1:
+Place the nvim/ directory as your (linux) ~/.config/nvim 
+
+## Step 2:
+lazy.nvim will lazily loads all plugins stored within the neovim/lazy directory in this repo. Super simple!
+
+# My GVIM/VIM Config
 ## Config is setup using Vim-Plug
 To setup vim-plug you can view: https://github.com/junegunn/vim-plug
 To download neovim: https://github.com/neovim/neovim/wiki/Installing-Neovim
@@ -59,10 +68,7 @@ Open up Vim via ```vim``` or ```gvim``` and run ```:PlugInstall```
 <img src="img/vim.png" alt="vim sample">
 
 
-
-
-
-# Old Vundle Config way (Recommend using Vim-Plug Methods above)
+# Old Vundle Config way (Recommend using Vim-Plug Methods above for GVIM/VIM)
 ## Config is setup using Vundle Plugin Manager
 
 To install Vundle:
