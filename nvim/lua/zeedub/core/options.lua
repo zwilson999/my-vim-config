@@ -50,8 +50,15 @@ vim.opt.wildmode = "list:longest"
 -- Set fonts here
 vim.opt.guifont = "JetBrainsMono Nerd Font Mono Bold 12"
 
+-- Follow the terminal guicolors if able to be read
 vim.opt.termguicolors = true
 vim.opt.background = "dark"
+
+-- Autocmd to negate auto comments when pressing <CR> to next line
+vim.api.nvim_create_autocmd(
+        "FileType",
+        { command = "set formatoptions-=cro", pattern = "*"}
+)
 
 -- NERD COMMENTER Settings
 -- Create default comment mappings
@@ -78,4 +85,3 @@ vim.g.go_info_mode = "gopls"
 vim.g.rustfmt_autosave = "1"
 vim.g.rustfmt_emit_files = "1"
 vim.g.rustfmt_fail_silently = "0"
-
