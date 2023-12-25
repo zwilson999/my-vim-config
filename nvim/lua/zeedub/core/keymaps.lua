@@ -19,10 +19,9 @@ map("n", "<C-c>", ':call nerdcommenter#Comment("n", "toggle")<CR>', { noremap = 
 
 -- Insert closing braces after typing first
 map("i", "{<CR>", "{<CR><CR>}", { noremap = true, silent = true})
-map("i", "{", "{}<Left>", { noremap = true, silent = true})
 
 -- Insert closing parens after typing first
-map("i", "(<CR>", "(<CR>)", { noremap = true, silent = true})
+map("i", "(<CR>", "(<CR><CR>)", { noremap = true, silent = true})
 
 -- Barbar allows us to select buffer based on entry
 -- Move to prev/next
@@ -44,3 +43,10 @@ map("n", "<A-0>", "<Cmd>BufferLast<CR>", { silent = true })
 -- Will open a hover window for the function our cursor is over
 -- This will show documentation for the function
 map("n", "K", "<cmd> lua vim.lsp.buf.hover()<CR>", { silent = true })
+
+-- fix common errors when typing capital letters by accident
+vim.api.nvim_create_user_command("WQ", "wq", {})
+vim.api.nvim_create_user_command("Wq", "wq", {})
+vim.api.nvim_create_user_command('W', 'w', {})
+vim.api.nvim_create_user_command('Q', 'q', {})
+
